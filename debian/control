@@ -1,15 +1,41 @@
-Source: template-repository
-Section: unknown
+Source: rust-asn1
+Section: rust
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends: debhelper-compat (= 13),
+ dh-sequence-cargo
+Build-Depends-Arch: cargo:native <!nocheck>,
+ rustc:native (>= 1.59.0) <!nocheck>,
+ libstd-rust-dev <!nocheck>,
+ librust-asn1-derive-0.20+default-dev <!nocheck>,
+ librust-itoa-1+default-dev (>= 1.0.11-~~) <!nocheck>
+Maintainer: Debian Rust Maintainers <pkg-rust-maintainers@alioth-lists.debian.net>
+Uploaders:
+ Claudius Heine <ch@denx.de>
+Standards-Version: 4.7.0
+Vcs-Git: https://salsa.debian.org/rust-team/debcargo-conf.git [src/asn1]
+Vcs-Browser: https://salsa.debian.org/rust-team/debcargo-conf/tree/master/src/asn1
+Homepage: https://github.com/alex/rust-asn1
+X-Cargo-Crate: asn1
+Rules-Requires-Root: no
 
-Package: template-repository
+Package: librust-asn1-dev
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ librust-asn1-derive-0.20+default-dev,
+ librust-itoa-1+default-dev (>= 1.0.11-~~)
+Provides:
+ librust-asn1+default-dev (= ${binary:Version}),
+ librust-asn1+std-dev (= ${binary:Version}),
+ librust-asn1-0-dev (= ${binary:Version}),
+ librust-asn1-0+default-dev (= ${binary:Version}),
+ librust-asn1-0+std-dev (= ${binary:Version}),
+ librust-asn1-0.20-dev (= ${binary:Version}),
+ librust-asn1-0.20+default-dev (= ${binary:Version}),
+ librust-asn1-0.20+std-dev (= ${binary:Version}),
+ librust-asn1-0.20.0-dev (= ${binary:Version}),
+ librust-asn1-0.20.0+default-dev (= ${binary:Version}),
+ librust-asn1-0.20.0+std-dev (= ${binary:Version})
+Description: ASN.1 (DER) parser and writer for Rust - Rust source code
+ Source code for Debianized Rust crate "asn1"
